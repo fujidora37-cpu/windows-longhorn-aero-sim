@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Longhorn Style</title>
+    <style>
+      :root {
+        --bg: #d9d9d6;
+        --panel: rgba(239, 239, 239, 0.9);
+        --panel-strong: rgba(230, 230, 230, 0.92);
+        --stroke: rgba(0, 0, 0, 0.35);
+        --text: #111111;
+        --muted: #575757;
+        --taskbar: linear-gradient(#e4e7ea, #c9ced3);
+        --taskbar-border: rgba(0, 0, 0, 0.22);
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        font-family: "Segoe UI", Tahoma, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      body {
+        overflow: hidden;
+      }
+
+      .desktop {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        background: #d9d9d6;
+      }
+
+      .taskbar-top {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 0 10px;
+        background: rgba(255,255,255,0.06);
+        z-index: 2;
+      }
+
+      .taskbar-top .app-pill {
+        padding: 2px 8px;
+        font-size: 14px;
+        border: 1px solid transparent;
+        color: #111;
+        background: transparent;
+      }
+
+      .taskbar-top .app-pill.active {
+        border-color: rgba(0,0,0,0.15);
+        background: rgba(255,255,255,0.06);
+      }
+
+      .app-icon {
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        border-radius: 3px;
+        vertical-align: middle;
+        margin-right: 8px;
+        border: 1px solid rgba(0,0,0,0.18);
+        background: linear-gradient(180deg, #fafafa, #dfe5ef);
+        position: relative;
+      }
+
+      .app-icon.computer::before {
+        content: "";
+        position: absolute;
+        inset: 4px 4px 7px 4px;
+        background: #c5ced8;
+        border-radius: 2px;
+      }
+
+      .app-icon.computer::after {
+        content: "";
+        position: absolute;
+        left: 5px;
+        right: 5px;
+        bottom: 2px;
+        height: 4px;
+        background: #7d8696;
+      }
+
+      .app-icon.documents::before {
+        content: "";
+        position: absolute;
+        inset: 3px;
+        background: linear-gradient(180deg, #fff, #e8edf2);
+        border-radius: 2px;
+      }
+
+      .app-icon.documents::after {
+        content: "";
+        position: absolute;
+        left: 7px;
+        right: 7px;
+        top: 8px;
+        height: 2px;
+        background: rgba(0,0,0,0.45);
+        box-shadow: 0 5px 0 rgba(0,0,0,0.45), 0 10px 0 rgba(0,0,0,0.45);
+      }
+
+      .app-icon.music::before {
+        content: "";
+        position: absolute;
+        left: 3px;
+        top: 3px;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: linear-gradient(180deg, #f5af69, #9f2d1a);
+      }
+
+      .app-icon.music::after {
+        content: "";
+        position: absolute;
+        right: 4px;
+        top: 3px;
+        width: 2px;
+        height: 12px;
+        background: rgba(255,255,255,0.7);
+        box-shadow: -6px 0 0 rgba(255,255,255,0.7);
+      }
+
+      .app-icon.media::before {
+        content: "";
+        position: absolute;
+        left: 3px;
+        right: 3px;
+        top: 4px;
+        bottom: 4px;
+        border-radius: 3px;
+        background: linear-gradient(180deg, #bdd8ff, #5a82bf);
+      }
+
+      .app-icon.media::after {
+        content: "";
+        position: absolute;
+        left: 8px;
+        top: 7px;
+        width: 0;
+        height: 0;
+        border-left: 6px solid #fff;
+        border-top: 4px solid transparent;
+        border-bottom: 4px solid transparent;
+      }
+
+      .start-menu {
+        position: absolute;
+        left: 8px;
+        top: 30px;
+        width: 440px;
+        min-height: 360px;
+        background: rgba(242,242,242,0.84);
+        border: 1px solid rgba(0,0,0,0.4);
+        box-shadow: 0 2px 0 rgba(255,255,255,0.9), 0 8px 16px rgba(0,0,0,0.08);
+        z-index: 5;
+      }
+
+      .start-header {
+        padding: 14px 14px 8px;
+      }
+
+      .start-title {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 2px;
+      }
+
+      .start-subtitle {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .start-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px 18px;
+        padding: 10px 14px 0;
+      }
+
+      .start-col {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .start-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid rgba(0,0,0,0.18);
+        background: rgba(255,255,255,0.1);
+        height: 24px;
+        padding: 0 8px;
+        width: max-content;
+        min-width: 120px;
+        font-size: 13px;
+        color: #111;
+      }
+
+      .mini-icon {
+        width: 16px;
+        height: 16px;
+        display: inline-block;
+        border: 1px solid rgba(0,0,0,0.18);
+        background: linear-gradient(180deg, #edf4ff, #d5dfe9);
+        position: relative;
+      }
+
+      .mini-icon::before {
+        content: "";
+        position: absolute;
+        inset: 4px;
+        background: rgba(43, 72, 107, 0.7);
+      }
+
+      .start-footer {
+        margin-top: 12px;
+        padding: 10px 12px 12px;
+        display: flex;
+        gap: 12px;
+        border-top: 1px solid rgba(0,0,0,0.18);
+      }
+
+      .power-btn {
+        border: 1px solid rgba(0,0,0,0.24);
+        background: rgba(255,255,255,0.14);
+        padding: 4px 10px;
+        font-size: 12px;
+        color: #111;
+      }
+
+      .window {
+        position: absolute;
+        left: 14px;
+        top: 90px;
+        width: 620px;
+        height: 470px;
+        background: rgba(246,246,246,0.9);
+        border: 1px solid rgba(0,0,0,0.35);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+      }
+
+      .window-bar {
+        height: 28px;
+        background: linear-gradient(180deg, #f2f2f2, #dfe2e5);
+        border-bottom: 1px solid rgba(0,0,0,0.25);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 8px 0 10px;
+        font-size: 12px;
+        color: #131313;
+      }
+
+      .window-title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 600;
+      }
+
+      .tiny-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: linear-gradient(180deg, #80d58c, #4b7d57);
+        display: inline-block;
+      }
+
+      .controls {
+        display: flex;
+        gap: 6px;
+      }
+
+      .controls span {
+        width: 18px;
+        height: 18px;
+        display: inline-grid;
+        place-items: center;
+        border: 1px solid rgba(0,0,0,0.22);
+        background: rgba(255,255,255,0.18);
+      }
+
+      .browser-body {
+        height: calc(100% - 28px);
+        display: flex;
+      }
+
+      .sidebar {
+        width: 178px;
+        padding: 12px 12px 0 14px;
+        background: rgba(255,255,255,0.04);
+        border-right: 1px solid rgba(0,0,0,0.12);
+      }
+
+      .count {
+        font-size: 15px;
+        font-weight: 500;
+        display: flex;
+        align-items: flex-end;
+        gap: 8px;
+        margin-bottom: 18px;
+      }
+
+      .count strong {
+        font-size: 26px;
+        font-weight: 600;
+      }
+
+      .menu {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        font-size: 14px;
+      }
+
+      .filter {
+        margin-top: 18px;
+      }
+
+      .filter label {
+        display: block;
+        font-size: 12px;
+        margin-bottom: 4px;
+      }
+
+      .filter input {
+        width: 100%;
+        border: 1px solid rgba(0,0,0,0.25);
+        background: rgba(255,255,255,0.18);
+        padding: 4px 6px;
+      }
+
+      .years {
+        margin-top: 14px;
+        font-size: 12px;
+        line-height: 1.7;
+      }
+
+      .main-panel {
+        flex: 1;
+        padding: 10px 14px 0 14px;
+        background: rgba(255,255,255,0.05);
+      }
+
+      .header-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 12px;
+      }
+
+      .header-row .brand {
+        font-size: 18px;
+        font-weight: 700;
+        text-transform: lowercase;
+      }
+
+      .header-row .brand-mark {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 30% 30%, #dbe9d2, #6ea17a 52%, #2d4d46 100%);
+      }
+
+      .action-row {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 18px;
+      }
+
+      .action-row .inset {
+        border: 1px solid rgba(0,0,0,0.22);
+        background: rgba(255,255,255,0.14);
+        padding: 4px 8px;
+        font-size: 12px;
+      }
+
+      .album-grid {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(70px, 1fr));
+        gap: 12px 12px;
+      }
+
+      .album {
+        height: 52px;
+        border: 1px solid rgba(0,0,0,0.18);
+        background: linear-gradient(180deg, #c9d5df, #8e9aa8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        color: #111;
+      }
+
+      .album:nth-child(2n) { background: linear-gradient(180deg, #dac39a, #9a7a49); }
+      .album:nth-child(3n) { background: linear-gradient(180deg, #d7d3bf, #7d7b62); }
+      .album:nth-child(4n) { background: linear-gradient(180deg, #b5bfd9, #6f7ea8); }
+      .album:nth-child(5n) { background: linear-gradient(180deg, #b7c9ba, #728c7a); }
+
+      /* second screenshot area */
+      .preview-wrap {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        pointer-events: none;
+      }
+
+      @media (max-width: 900px) {
+        .start-menu { width: min(90vw, 420px); }
+        .window { width: calc(100vw - 30px); left: 15px; }
+        .album-grid { grid-template-columns: repeat(3, minmax(70px, 1fr)); }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="desktop">
+      <div class="taskbar-top">
+        <div class="app-pill active"><span class="app-icon computer"></span>My Computer</div>
+        <div class="app-pill"><span class="app-icon documents"></span>Shared Documents</div>
+        <div class="app-pill"><span class="app-icon music"></span>Music Library</div>
+        <div class="app-pill"><span class="app-icon media"></span>Media Player</div>
+      </div>
+
+      <div class="start-menu">
+        <div class="start-header">
+          <div class="start-title">Patrick start</div>
+          <div class="start-subtitle">Type here to search</div>
+        </div>
+
+        <div class="start-grid">
+          <div class="start-col">
+            <div class="start-item"><span class="mini-icon"></span>My Computer</div>
+            <div class="start-item"><span class="mini-icon"></span>Documents</div>
+            <div class="start-item"><span class="mini-icon"></span>Music Library</div>
+            <div class="start-item"><span class="mini-icon"></span>Media Player</div>
+            <div class="start-item"><span class="mini-icon"></span>Control Panel</div>
+            <div class="start-item"><span class="mini-icon"></span>Internet</div>
+          </div>
+          <div class="start-col">
+            <div class="start-item"><span class="mini-icon"></span>Microsoft Office</div>
+            <div class="start-item"><span class="mini-icon"></span>Explorer</div>
+            <div class="start-item"><span class="mini-icon"></span>Paint</div>
+            <div class="start-item"><span class="mini-icon"></span>Settings</div>
+            <div class="start-item"><span class="mini-icon"></span>Help &amp; Support</div>
+          </div>
+        </div>
+
+        <div class="start-footer">
+          <button class="power-btn">Log Off</button>
+          <button class="power-btn">Shut Down</button>
+        </div>
+      </div>
+
+      <div class="window">
+        <div class="window-bar">
+          <div class="window-title"><span class="tiny-dot"></span> Music Library</div>
+          <div class="controls">
+            <span>−</span>
+            <span>×</span>
+          </div>
+        </div>
+
+        <div class="browser-body">
+          <aside class="sidebar">
+            <div class="count"><strong>198</strong> albums</div>
+            <ul class="menu">
+              <li>All Music</li>
+              <li>Artists</li>
+              <li>Albums</li>
+              <li>Genre</li>
+              <li>Playlists</li>
+            </ul>
+
+            <div class="filter">
+              <label>Filter on</label>
+              <input type="text" placeholder="type any word here" />
+            </div>
+
+            <div class="years">2000 2001 2002</div>
+            <div>Trail</div>
+            <div>Ride</div>
+            <div>Sunset</div>
+            <div>Weird</div>
+            <div>Gold</div>
+            <div>Cloud</div>
+            <div>Echo</div>
+            <div>Glass</div>
+            <div>Drift</div>
+            <div>Blue</div>
+            <div>Sound</div>
+          </aside>
+
+          <div class="main-panel">
+            <div class="header-row">
+              <span class="brand-mark"></span>
+              <span class="brand">music library</span>
+            </div>
+
+            <div class="action-row">
+              <span class="inset">Play all</span>
+              <span class="inset">Add to playing</span>
+              <span class="inset">Create a playlist</span>
+            </div>
+
+            <div class="album-grid">
+              <div class="album">Trail</div>
+              <div class="album">Ride</div>
+              <div class="album">Sunset</div>
+              <div class="album">Weird</div>
+              <div class="album">Gold</div>
+              <div class="album">Cloud</div>
+              <div class="album">Echo</div>
+              <div class="album">Glass</div>
+              <div class="album">Drift</div>
+              <div class="album">Blue</div>
+              <div class="album">Sound</div>
+              <div class="album">Night</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
