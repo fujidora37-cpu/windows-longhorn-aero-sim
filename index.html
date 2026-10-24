@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Longhorn Aero Simulator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="desktop">
+      <div class="desktop-icons">
+        <button class="desktop-icon" data-window="computer">
+          <span class="icon computer"></span>
+          <span class="label">My Computer</span>
+        </button>
+        <button class="desktop-icon" data-window="documents">
+          <span class="icon documents"></span>
+          <span class="label">Shared Documents</span>
+        </button>
+        <button class="desktop-icon" data-window="music">
+          <span class="icon music"></span>
+          <span class="label">Music Library</span>
+        </button>
+        <button class="desktop-icon" data-window="media">
+          <span class="icon media"></span>
+          <span class="label">Media Player</span>
+        </button>
+      </div>
+
+      <aside id="start-menu" class="start-menu hidden" aria-label="Start menu">
+        <div class="start-header">
+          <div class="user-badge">
+            <span class="avatar">P</span>
+          </div>
+          <div class="start-title-wrap">
+            <div class="start-title">Patrick start</div>
+            <div class="start-subtitle">Type here to search</div>
+          </div>
+        </div>
+
+        <div class="start-body">
+          <div class="program-column left">
+            <button class="start-app" data-window="computer">
+              <span class="mini-icon computer-mini"></span>
+              My Computer
+            </button>
+            <button class="start-app" data-window="documents">
+              <span class="mini-icon docs-mini"></span>
+              Documents
+            </button>
+            <button class="start-app" data-window="music">
+              <span class="mini-icon music-mini"></span>
+              Music Library
+            </button>
+            <button class="start-app" data-window="media">
+              <span class="mini-icon media-mini"></span>
+              Media Player
+            </button>
+            <button class="start-app" data-window="control">
+              <span class="mini-icon control-mini"></span>
+              Control Panel
+            </button>
+            <button class="start-app" data-window="internet">
+              <span class="mini-icon internet-mini"></span>
+              Internet
+            </button>
+          </div>
+
+          <div class="program-column right">
+            <button class="start-app" data-window="office">
+              <span class="mini-icon office-mini"></span>
+              Microsoft Office
+            </button>
+            <button class="start-app" data-window="explorer">
+              <span class="mini-icon explorer-mini"></span>
+              Explorer
+            </button>
+            <button class="start-app" data-window="paint">
+              <span class="mini-icon paint-mini"></span>
+              Paint
+            </button>
+            <button class="start-app" data-window="settings">
+              <span class="mini-icon settings-mini"></span>
+              Settings
+            </button>
+            <button class="start-app" data-window="help">
+              <span class="mini-icon help-mini"></span>
+              Help & Support
+            </button>
+          </div>
+        </div>
+
+        <div class="start-footer">
+          <button class="power-btn">Log Off</button>
+          <button class="power-btn">Shut Down</button>
+        </div>
+      </aside>
+
+      <div id="windows-layer" class="windows-layer">
+        <section class="window music-window active" data-window="music">
+          <div class="window-bar">
+            <div class="window-title"><span class="tiny-dot"></span> Music Library</div>
+            <div class="window-controls">
+              <button class="title-btn minimize" aria-label="Minimize">—</button>
+              <button class="title-btn close" aria-label="Close">×</button>
+            </div>
+          </div>
+
+          <div class="music-shell">
+            <div class="music-header">
+              <div class="music-brand">
+                <div class="brand-mark"></div>
+                <span>music library</span>
+              </div>
+              <div class="music-actions">
+                <button>Play all</button>
+                <button>Add to playing</button>
+                <button>Create a playlist</button>
+              </div>
+            </div>
+
+            <div class="music-main">
+              <aside class="music-sidebar">
+                <div class="album-count">
+                  <span class="big-number">198</span>
+                  <span class="small-text">albums</span>
+                </div>
+                <ul>
+                  <li>All Music</li>
+                  <li>Artists</li>
+                  <li>Albums</li>
+                  <li>Genre</li>
+                  <li>Playlists</li>
+                </ul>
+                <div class="filter-box">
+                  <label>Filter on</label>
+                  <input placeholder="type any word here" />
+                </div>
+                <div class="years">
+                  <span>2000</span>
+                  <span>2001</span>
+                  <span>2002</span>
+                </div>
+              </aside>
+
+              <div class="music-grid-wrap">
+                <div class="music-grid">
+                  <div class="album art-one"><span>Trail</span></div>
+                  <div class="album art-two"><span>Ride</span></div>
+                  <div class="album art-three"><span>Sunset</span></div>
+                  <div class="album art-four"><span>Weird</span></div>
+                  <div class="album art-five"><span>Gold</span></div>
+                  <div class="album art-six"><span>Cloud</span></div>
+                  <div class="album art-seven"><span>Echo</span></div>
+                  <div class="album art-eight"><span>Glass</span></div>
+                  <div class="album art-nine"><span>Drift</span></div>
+                  <div class="album art-ten"><span>Blue</span></div>
+                  <div class="album art-eleven"><span>Sound</span></div>
+                  <div class="album art-twelve"><span>Night</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="window explorer-window" data-window="explorer">
+          <div class="window-bar">
+            <div class="window-title"><span class="tiny-dot"></span> Explorer</div>
+            <div class="window-controls">
+              <button class="title-btn minimize" aria-label="Minimize">—</button>
+              <button class="title-btn close" aria-label="Close">×</button>
+            </div>
+          </div>
+
+          <div class="explorer-shell">
+            <div class="explorer-toolbar">
+              <div class="crumbs">Shared Documents</div>
+              <div class="toolbar-actions">
+                <button>Back</button>
+                <button>Forward</button>
+              </div>
+            </div>
+
+            <div class="explorer-main">
+              <aside class="folder-panel">
+                <h4>Folders</h4>
+                <ul>
+                  <li>Desktop</li>
+                  <li>Documents</li>
+                  <li>Downloads</li>
+                  <li>Music</li>
+                  <li>Pictures</li>
+                  <li>Videos</li>
+                  <li>Local Disk (C:)</li>
+                </ul>
+              </aside>
+
+              <div class="folder-view">
+                <div class="top-meta">
+                  <span>43 files</span>
+                  <span>Shared with friends</span>
+                </div>
+
+                <div class="file-grid">
+                  <div class="file-card"><span class="file-icon pdf"></span><label>Brief.pdf</label></div>
+                  <div class="file-card"><span class="file-icon doc"></span><label>Budget.doc</label></div>
+                  <div class="file-card"><span class="file-icon img"></span><label>Lake.jpg</label></div>
+                  <div class="file-card"><span class="file-icon mp3"></span><label>Song.mp3</label></div>
+                  <div class="file-card"><span class="file-icon zip"></span><label>Archive.zip</label></div>
+                  <div class="file-card"><span class="file-icon ppt"></span><label>Pitch.ppt</label></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="window docs-window" data-window="documents">
+          <div class="window-bar">
+            <div class="window-title"><span class="tiny-dot"></span> Shared Documents</div>
+            <div class="window-controls">
+              <button class="title-btn minimize" aria-label="Minimize">—</button>
+              <button class="title-btn close" aria-label="Close">×</button>
+            </div>
+          </div>
+
+          <div class="docs-shell">
+            <div class="docs-topbar">
+              <div class="title-group">
+                <span class="title-text">Shared Documents</span>
+              </div>
+              <div class="tiny-actions">
+                <button>New</button>
+                <button>Upload</button>
+              </div>
+            </div>
+
+            <div class="docs-content">
+              <div class="docs-sidebar">
+                <ul>
+                  <li class="active">Documents</li>
+                  <li>Images</li>
+                  <li>Music</li>
+                  <li>Videos</li>
+                </ul>
+              </div>
+              <div class="docs-pane">
+                <div class="file-row"><span class="row-icon"></span><span>Project plan</span></div>
+                <div class="file-row"><span class="row-icon"></span><span>Budget notes</span></div>
+                <div class="file-row"><span class="row-icon"></span><span>Marketing brief</span></div>
+                <div class="file-row"><span class="row-icon"></span><span>Vacation photo</span></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="taskbar">
+        <button id="start-button" class="start-button" aria-label="Open start menu">
+          <span class="button-logo"></span>
+          <span>Start</span>
+        </button>
+
+        <div id="taskbar-apps" class="taskbar-apps"></div>
+
+        <div class="taskbar-right">
+          <div class="lang-pill">ENG</div>
+          <div id="clock" class="clock">10:45 PM</div>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
